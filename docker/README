@@ -1,0 +1,8 @@
+Python App Container:
+1. docker build -t python-app .
+2. docker run python-app
+
+Web Server:
+1. docker pull nginx:latest
+2. docker run -d -p 8080:80 -v $(pwd)/index.html:/usr/share/nginx/html/index.html nginx:latest
+3. Goto "http://localhost:8080" via browser
