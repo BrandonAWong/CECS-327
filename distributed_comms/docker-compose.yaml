@@ -1,0 +1,202 @@
+services:
+  cluster_1_1:
+    image: python:3.9-slim
+    container_name: cluster_1_1
+    hostname: Cluster A Master
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.2
+    volumes:
+      - ./broadcast.py:/app/broadcast.py
+    command: python /app/broadcast.py
+    environment:
+      - ROLE=master
+
+  cluster_1_2:
+    image: python:3.9-slim
+    container_name: cluster_1_2
+    hostname: Container 1
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.3
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_1_3:
+    image: python:3.9-slim
+    container_name: cluster_1_3
+    hostname: Container 2
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.4
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_1_4:
+    image: python:3.9-slim
+    container_name: cluster_1_4
+    hostname: Container 3
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.5
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_1_5:
+    image: python:3.9-slim
+    container_name: cluster_1_5
+    hostname: Container 4
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.6
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_1_6:
+    image: python:3.9-slim
+    container_name: cluster_1_6
+    hostname: Container 5
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.7
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_1_7:
+    image: python:3.9-slim
+    container_name: cluster_1_7
+    hostname: Container 6
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.8
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_1_8:
+    image: python:3.9-slim
+    container_name: cluster_1_8
+    hostname: Container 7
+    networks:
+      cluster_1:
+        ipv4_address: 192.18.0.9
+    volumes:
+      - ./broadcast_listener.py:/app/broadcast_listener.py
+    command: python /app/broadcast_listener.py
+
+  cluster_2_1:
+    image: python:3.9-slim
+    container_name: cluster_2_1
+    hostname: Cluster B Master
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.10
+    environment:
+      - ROLE=master
+    volumes:
+      - ./multicast.py:/app/multicast.py
+    command: python /app/multicast.py
+
+  cluster_2_2:
+    image: python:3.9-slim
+    container_name: cluster_2_2
+    hostname: Container 8
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.11
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+  cluster_2_3:
+    image: python:3.9-slim
+    container_name: cluster_2_3
+    hostname: Container 9
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.12
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+  cluster_2_4:
+    image: python:3.9-slim
+    container_name: cluster_2_4
+    hostname: Container 10
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.13
+    environment:
+      - MULTICAST_GROUP=224.1.1.1
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+  cluster_2_5:
+    image: python:3.9-slim
+    container_name: cluster_2_5
+    hostname: Container 11
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.14
+    environment:
+      - MULTICAST_GROUP=224.1.1.1
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+  cluster_2_6:
+    image: python:3.9-slim
+    container_name: cluster_2_6
+    hostname: Container 12
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.15
+    environment:
+      - MULTICAST_GROUP=224.1.1.1
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+  cluster_2_7:
+    image: python:3.9-slim
+    container_name: cluster_2_7
+    hostname: Container 13
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.16
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+  cluster_2_8:
+    image: python:3.9-slim
+    container_name: cluster_2_8
+    hostname: Container 14
+    networks:
+      cluster_2:
+        ipv4_address: 192.19.0.17
+    volumes:
+      - ./multicast_listener.py:/app/multicast_listener.py
+    command: python /app/multicast_listener.py
+
+networks:
+  cluster_1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.18.0.0/24
+          gateway: 192.18.0.1
+
+  cluster_2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.19.0.0/24
+          gateway: 192.19.0.1
+
