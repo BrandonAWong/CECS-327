@@ -13,3 +13,4 @@ sock.bind(("", 5000))
 data, _ = sock.recvfrom(1024)
 print(f'[{hostname}] Received broadcast message: "{data.decode()}"')
 
+sock.close()
