@@ -7,8 +7,8 @@ services:
       network:
         ipv4_address: 192.18.0.2
     volumes:
-      - ./broadcast.py:/app/broadcast.py
-    command: python /app/broadcast.py
+      - ./master_a.py:/app/master_a.py
+    command: python /app/master_a.py
     environment:
       - ROLE=master
 
@@ -99,8 +99,8 @@ services:
     environment:
       - ROLE=master
     volumes:
-      - ./multicast.py:/app/multicast.py
-    command: python /app/multicast.py
+      - ./master_b.py:/app/master_b.py
+    command: python /app/master_b.py
 
   cluster_2_2:
     image: python:3.9-slim
