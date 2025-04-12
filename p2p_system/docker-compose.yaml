@@ -1,0 +1,816 @@
+services:
+  bootstrap:
+    image: python:3.12-slim
+    container_name: bootstrap 
+    hostname: bootstrap
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./bootstrap.py:/app/bootstrap.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/bootstrap.py"
+    healthcheck:
+      test: ["CMD-SHELL", "echo curl -f http://127.0.0.1:5000/peers"]
+      interval: 1s
+      timeout: 1s
+      retries: 10
+
+  node1:
+    image: python:3.12-slim
+    container_name: node1
+    hostname: node1
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5001
+
+  node2:
+    image: python:3.12-slim
+    container_name: node2
+    hostname: node2
+    ports:
+      - "5002:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5002
+
+  node3:
+    image: python:3.12-slim
+    container_name: node3
+    hostname: node3
+    ports:
+      - "5003:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5003
+
+  node4:
+    image: python:3.12-slim
+    container_name: node4
+    hostname: node4
+    ports:
+      - "5004:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5004
+
+  node5:
+    image: python:3.12-slim
+    container_name: node5
+    hostname: node5
+    ports:
+      - "5005:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5005
+
+  node6:
+    image: python:3.12-slim
+    container_name: node6
+    hostname: node6
+    ports:
+      - "5006:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5006
+
+  node7:
+    image: python:3.12-slim
+    container_name: node7
+    hostname: node7
+    ports:
+      - "5007:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5007
+
+  node8:
+    image: python:3.12-slim
+    container_name: node8
+    hostname: node8
+    ports:
+      - "5008:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5008
+
+  node9:
+    image: python:3.12-slim
+    container_name: node9
+    hostname: node9
+    ports:
+      - "5009:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5009
+
+  node10:
+    image: python:3.12-slim
+    container_name: node10
+    hostname: node10
+    ports:
+      - "5010:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5010
+
+  node11:
+    image: python:3.12-slim
+    container_name: node11
+    hostname: node11
+    ports:
+      - "5011:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5011
+
+  node12:
+    image: python:3.12-slim
+    container_name: node12
+    hostname: node12
+    ports:
+      - "5012:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5012
+
+  node13:
+    image: python:3.12-slim
+    container_name: node13
+    hostname: node13
+    ports:
+      - "5013:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5013
+
+  node14:
+    image: python:3.12-slim
+    container_name: node14
+    hostname: node14
+    ports:
+      - "5014:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5014
+
+  node15:
+    image: python:3.12-slim
+    container_name: node15
+    hostname: node15
+    ports:
+      - "5015:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5015
+
+  node16:
+    image: python:3.12-slim
+    container_name: node16
+    hostname: node16
+    ports:
+      - "5016:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5016
+
+  node17:
+    image: python:3.12-slim
+    container_name: node17
+    hostname: node17
+    ports:
+      - "5017:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5017
+
+  node18:
+    image: python:3.12-slim
+    container_name: node18
+    hostname: node18
+    ports:
+      - "5018:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5018
+
+  node19:
+    image: python:3.12-slim
+    container_name: node19
+    hostname: node19
+    ports:
+      - "5019:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5019
+
+  node20:
+    image: python:3.12-slim
+    container_name: node20
+    hostname: node20
+    ports:
+      - "5020:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5020
+
+  node21:
+    image: python:3.12-slim
+    container_name: node21
+    hostname: node21
+    ports:
+      - "5021:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5021
+
+  node22:
+    image: python:3.12-slim
+    container_name: node22
+    hostname: node22
+    ports:
+      - "5022:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5022
+
+  node23:
+    image: python:3.12-slim
+    container_name: node23
+    hostname: node23
+    ports:
+      - "5023:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5023
+
+  node24:
+    image: python:3.12-slim
+    container_name: node24
+    hostname: node24
+    ports:
+      - "5024:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5024
+
+  node25:
+    image: python:3.12-slim
+    container_name: node25
+    hostname: node25
+    ports:
+      - "5025:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5025
+
+  node26:
+    image: python:3.12-slim
+    container_name: node26
+    hostname: node26
+    ports:
+      - "5026:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5026
+
+  node27:
+    image: python:3.12-slim
+    container_name: node27
+    hostname: node27
+    ports:
+      - "5027:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5027
+
+  node28:
+    image: python:3.12-slim
+    container_name: node28
+    hostname: node28
+    ports:
+      - "5028:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5028
+
+  node29:
+    image: python:3.12-slim
+    container_name: node29
+    hostname: node29
+    ports:
+      - "5029:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5029
+
+  node30:
+    image: python:3.12-slim
+    container_name: node30
+    hostname: node30
+    ports:
+      - "5030:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5030
+
+  node31:
+    image: python:3.12-slim
+    container_name: node31
+    hostname: node31
+    ports:
+      - "5031:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5031
+
+  node32:
+    image: python:3.12-slim
+    container_name: node32
+    hostname: node32
+    ports:
+      - "5032:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5032
+
+  node33:
+    image: python:3.12-slim
+    container_name: node33
+    hostname: node33
+    ports:
+      - "5033:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5033
+
+  node34:
+    image: python:3.12-slim
+    container_name: node34
+    hostname: node34
+    ports:
+      - "5034:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5034
+
+  node35:
+    image: python:3.12-slim
+    container_name: node35
+    hostname: node35
+    ports:
+      - "5035:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5035
+
+  node36:
+    image: python:3.12-slim
+    container_name: node36
+    hostname: node36
+    ports:
+      - "5036:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5036
+
+  node37:
+    image: python:3.12-slim
+    container_name: node37
+    hostname: node37
+    ports:
+      - "5037:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5037
+
+  node38:
+    image: python:3.12-slim
+    container_name: node38
+    hostname: node38
+    ports:
+      - "5038:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5038
+
+  node39:
+    image: python:3.12-slim
+    container_name: node39
+    hostname: node39
+    ports:
+      - "5039:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5039
+
+  node40:
+    image: python:3.12-slim
+    container_name: node40
+    hostname: node40
+    ports:
+      - "5040:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5040
+
+  node41:
+    image: python:3.12-slim
+    container_name: node41
+    hostname: node41
+    ports:
+      - "5041:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5041
+
+  node42:
+    image: python:3.12-slim
+    container_name: node42
+    hostname: node42
+    ports:
+      - "5042:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5042
+
+  node43:
+    image: python:3.12-slim
+    container_name: node43
+    hostname: node43
+    ports:
+      - "5043:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5043
+
+  node44:
+    image: python:3.12-slim
+    container_name: node44
+    hostname: node44
+    ports:
+      - "5044:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5044
+
+  node45:
+    image: python:3.12-slim
+    container_name: node45
+    hostname: node45
+    ports:
+      - "5045:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5045
+
+  node46:
+    image: python:3.12-slim
+    container_name: node46
+    hostname: node46
+    ports:
+      - "5046:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5046
+
+  node47:
+    image: python:3.12-slim
+    container_name: node47
+    hostname: node47
+    ports:
+      - "5047:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5047
+
+  node48:
+    image: python:3.12-slim
+    container_name: node48
+    hostname: node48
+    ports:
+      - "5048:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5048
+
+  node49:
+    image: python:3.12-slim
+    container_name: node49
+    hostname: node49
+    ports:
+      - "5049:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5049
+
+  node50:
+    image: python:3.12-slim
+    container_name: node50
+    hostname: node50
+    ports:
+      - "5050:5000"
+    volumes:
+      - ./node.py:/app/node.py
+      - ./requirements.txt:/app/requirements.txt
+    command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
+    depends_on:
+      bootstrap:
+        condition: service_healthy
+    environment:
+      - PORT=5050
