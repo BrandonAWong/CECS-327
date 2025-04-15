@@ -22,7 +22,7 @@ services:
     ports:
       - "5001:5000"
     volumes:
-      - node1-storage:/app/storage
+      - node1-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -39,7 +39,7 @@ services:
     ports:
       - "5002:5000"
     volumes:
-      - node2-storage:/app/storage
+      - node2-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -56,7 +56,7 @@ services:
     ports:
       - "5003:5000"
     volumes:
-      - node3-storage:/app/storage
+      - node3-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -73,7 +73,7 @@ services:
     ports:
       - "5004:5000"
     volumes:
-      - node4-storage:/app/storage
+      - node4-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -90,7 +90,7 @@ services:
     ports:
       - "5005:5000"
     volumes:
-      - node5-storage:/app/storage
+      - node5-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -107,7 +107,7 @@ services:
     ports:
       - "5006:5000"
     volumes:
-      - node6-storage:/app/storage
+      - node6-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -124,7 +124,7 @@ services:
     ports:
       - "5007:5000"
     volumes:
-      - node7-storage:/app/storage
+      - node7-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -141,7 +141,7 @@ services:
     ports:
       - "5008:5000"
     volumes:
-      - node8-storage:/app/storage
+      - node8-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -158,7 +158,7 @@ services:
     ports:
       - "5009:5000"
     volumes:
-      - node9-storage:/app/storage
+      - node9-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -175,7 +175,7 @@ services:
     ports:
       - "5010:5000"
     volumes:
-      - node10-storage:/app/storage
+      - node10-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -192,7 +192,7 @@ services:
     ports:
       - "5011:5000"
     volumes:
-      - node11-storage:/app/storage
+      - node11-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -209,7 +209,7 @@ services:
     ports:
       - "5012:5000"
     volumes:
-      - node12-storage:/app/storage
+      - node12-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -226,7 +226,7 @@ services:
     ports:
       - "5013:5000"
     volumes:
-      - node13-storage:/app/storage
+      - node13-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -243,7 +243,7 @@ services:
     ports:
       - "5014:5000"
     volumes:
-      - node14-storage:/app/storage
+      - node14-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -260,7 +260,7 @@ services:
     ports:
       - "5015:5000"
     volumes:
-      - node15-storage:/app/storage
+      - node15-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -277,7 +277,7 @@ services:
     ports:
       - "5016:5000"
     volumes:
-      - node16-storage:/app/storage
+      - node16-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -294,7 +294,7 @@ services:
     ports:
       - "5017:5000"
     volumes:
-      - node17-storage:/app/storage
+      - node17-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -311,7 +311,7 @@ services:
     ports:
       - "5018:5000"
     volumes:
-      - node18-storage:/app/storage
+      - node18-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -328,7 +328,7 @@ services:
     ports:
       - "5019:5000"
     volumes:
-      - node19-storage:/app/storage
+      - node19-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -345,7 +345,7 @@ services:
     ports:
       - "5020:5000"
     volumes:
-      - node20-storage:/app/storage
+      - node20-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -362,7 +362,7 @@ services:
     ports:
       - "5021:5000"
     volumes:
-      - node21-storage:/app/storage
+      - node21-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -379,7 +379,7 @@ services:
     ports:
       - "5022:5000"
     volumes:
-      - node22-storage:/app/storage
+      - node22-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -396,7 +396,7 @@ services:
     ports:
       - "5023:5000"
     volumes:
-      - node23-storage:/app/storage
+      - node23-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -413,7 +413,7 @@ services:
     ports:
       - "5024:5000"
     volumes:
-      - node24-storage:/app/storage
+      - node24-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -430,7 +430,7 @@ services:
     ports:
       - "5025:5000"
     volumes:
-      - node25-storage:/app/storage
+      - node25-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -447,7 +447,7 @@ services:
     ports:
       - "5026:5000"
     volumes:
-      - node26-storage:/app/storage
+      - node26-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -464,7 +464,7 @@ services:
     ports:
       - "5027:5000"
     volumes:
-      - node27-storage:/app/storage
+      - node27-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -481,7 +481,7 @@ services:
     ports:
       - "5028:5000"
     volumes:
-      - node28-storage:/app/storage
+      - node28-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -498,7 +498,7 @@ services:
     ports:
       - "5029:5000"
     volumes:
-      - node29-storage:/app/storage
+      - node29-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -515,7 +515,7 @@ services:
     ports:
       - "5030:5000"
     volumes:
-      - node30-storage:/app/storage
+      - node30-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -532,7 +532,7 @@ services:
     ports:
       - "5031:5000"
     volumes:
-      - node31-storage:/app/storage
+      - node31-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -549,7 +549,7 @@ services:
     ports:
       - "5032:5000"
     volumes:
-      - node32-storage:/app/storage
+      - node32-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -566,7 +566,7 @@ services:
     ports:
       - "5033:5000"
     volumes:
-      - node33-storage:/app/storage
+      - node33-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -583,7 +583,7 @@ services:
     ports:
       - "5034:5000"
     volumes:
-      - node34-storage:/app/storage
+      - node34-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -600,7 +600,7 @@ services:
     ports:
       - "5035:5000"
     volumes:
-      - node35-storage:/app/storage
+      - node35-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -617,7 +617,7 @@ services:
     ports:
       - "5036:5000"
     volumes:
-      - node36-storage:/app/storage
+      - node36-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -634,7 +634,7 @@ services:
     ports:
       - "5037:5000"
     volumes:
-      - node37-storage:/app/storage
+      - node37-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -651,7 +651,7 @@ services:
     ports:
       - "5038:5000"
     volumes:
-      - node38-storage:/app/storage
+      - node38-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -668,7 +668,7 @@ services:
     ports:
       - "5039:5000"
     volumes:
-      - node39-storage:/app/storage
+      - node39-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -685,7 +685,7 @@ services:
     ports:
       - "5040:5000"
     volumes:
-      - node40-storage:/app/storage
+      - node40-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -702,7 +702,7 @@ services:
     ports:
       - "5041:5000"
     volumes:
-      - node41-storage:/app/storage
+      - node41-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -719,7 +719,7 @@ services:
     ports:
       - "5042:5000"
     volumes:
-      - node42-storage:/app/storage
+      - node42-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -736,7 +736,7 @@ services:
     ports:
       - "5043:5000"
     volumes:
-      - node43-storage:/app/storage
+      - node43-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -753,7 +753,7 @@ services:
     ports:
       - "5044:5000"
     volumes:
-      - node44-storage:/app/storage
+      - node44-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -770,7 +770,7 @@ services:
     ports:
       - "5045:5000"
     volumes:
-      - node45-storage:/app/storage
+      - node45-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -787,7 +787,7 @@ services:
     ports:
       - "5046:5000"
     volumes:
-      - node46-storage:/app/storage
+      - node46-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -804,7 +804,7 @@ services:
     ports:
       - "5047:5000"
     volumes:
-      - node47-storage:/app/storage
+      - node47-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -821,7 +821,7 @@ services:
     ports:
       - "5048:5000"
     volumes:
-      - node48-storage:/app/storage
+      - node48-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -838,7 +838,7 @@ services:
     ports:
       - "5049:5000"
     volumes:
-      - node49-storage:/app/storage
+      - node49-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"
@@ -855,7 +855,7 @@ services:
     ports:
       - "5050:5000"
     volumes:
-      - node50-storage:/app/storage
+      - node50-storage:/storage
       - ./node.py:/app/node.py
       - ./requirements.txt:/app/requirements.txt
     command: sh -c "pip install -q -r /app/requirements.txt && python -u /app/node.py"

@@ -5,7 +5,6 @@ from time import sleep
 from socket import gethostname
 import requests
 import logging
-from random import randint
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -13,6 +12,7 @@ log.setLevel(logging.ERROR)
 node_id = str(uuid4())
 peers = set()
 addr = f"http://{gethostname()}:5000"
+kvs = {}
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
@@ -39,16 +39,40 @@ def receive_message():
 def get_peers():
     return jsonify({"peers": list(peers)}), 200
 
+# File UPLOAD
 @app.route("/upload", methods=["POST"])
 def upload_file():
     file = request.files["file"]
     file.save(f"./storage/{file.filename}")
-    return jsonify({"status": f"uploaded {file.filename}"}), 201
+    return jsonify({"status": f"uploaded {file.filename}", "filename": file.filename}), 201
 
 @app.route("/download/<filename>", methods=["GET"])
 def download_file(filename):
-    return send_from_directory("./storage", filename)
+    return send_from_directory("/storage", filename, as_attachment=True)
 
+# Key-Value Store
+@app.route("/kv", methods=["POST"])
+def add_kv_pair():
+    data = request.get_json()
+    key = data.get("key")
+    value = data.get("value")
+
+    if not key or not value:
+        return jsonify({"error": "'key' and 'value' cannot be empty"})
+
+    kvs[key] = value
+    return jsonify({"status": f"key pair {key}-{value} added successfully"}), 201
+
+@app.route("/kv/<key>")
+def get_kv_value(key):
+    res = kvs.get(key)
+
+    if res is not None:
+        return jsonify({"value": res})
+    else:
+        return jsonify({"error": "key not found in storage"})
+
+# THREAD BS DISCOVCERY
 def find_peers():
     global peers
 
@@ -69,13 +93,6 @@ def find_peers():
 
         sleep(10)
 
-def message_peers():
-    while True:
-        for peer in peers:
-            requests.post(f"{peer}/message", json={"sender": gethostname(),
-                                                   "msg": f"SUPSUP YO NODE {peer.split("/")[2].replace(":5000", "")}"})
-
-        sleep(randint(5, 45))
 
 # run node before registering, prevent node from being queried before up
 app.run(host="0.0.0.0", threaded=True)
