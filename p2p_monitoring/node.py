@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request, send_from_directory
+from hashlib import sha1
 from uuid import uuid4
 from threading import Thread
 from time import sleep
 from socket import gethostname
 import requests
 import logging
+
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
@@ -57,20 +59,71 @@ def add_kv_pair():
     key = data.get("key")
     value = data.get("value")
 
-    if not key or not value:
-        return jsonify({"error": "'key' and 'value' cannot be empty"})
+    responsible_node = hash_key_to_node(key)
+    print(f"""
+          ==========================================
+          Saving {key}: {value} at {responsible_node if responsible_node != addr else "self"}
+          ==========================================
+          """)
 
-    kvs[key] = value
-    return jsonify({"status": f"key pair {key}-{value} added successfully"}), 201
+    if addr != responsible_node:
+        response = requests.post(f"{responsible_node}/kv", json={"key": key, "value": value})
+        return jsonify(response.json())
+    else:
+        if not key or not value:
+            return jsonify({"error": "'key' and 'value' cannot be empty"})
+
+        kvs[key] = value
+        return jsonify({"status": f"key pair {key}-{value} added successfully"}), 201
 
 @app.route("/kv/<key>")
 def get_kv_value(key):
-    res = kvs.get(key)
+    responsible_node = hash_key_to_node(key)
+    print(f"""
+          ==========================================
+          Retrieving '{key}' from {responsible_node if responsible_node != addr else "self"}
+          ==========================================
+          """)
 
-    if res is not None:
-        return jsonify({"value": res})
+    if addr != responsible_node:
+        response = requests.get(f"{responsible_node}/kv/{key}")
+        return jsonify(response.json())
     else:
-        return jsonify({"error": "key not found in storage"})
+        res = kvs.get(key)
+
+        if res is not None:
+            return jsonify({"value": res})
+        else:
+            return jsonify({"error": "key not found in storage"})
+
+@app.route("/find-closest/<key>", methods=["GET"])
+def find_closest_node(key):
+    return jsonify({"node": hash_key_to_node(key, request.args.get("hop"))})
+
+def hash_key_to_node(key, hop=0):
+    hashed_key = sha1_hash(key)
+    peer_distances = {peer: sha1_hash(peer) ^ hashed_key for peer in peers}
+    shortest_node = addr
+
+    for _ in range(3):
+        if peer_distances and int(hop) < 5:
+            node = min(peer_distances, key=peer_distances.get)
+            response = requests.get(f"{node}/find-closest/{key}?hop={int(hop)+1}")
+            json = response.json()
+            peer_distances.pop(node)
+
+            if sha1_hash(json["node"]) ^ hashed_key <= sha1_hash(shortest_node) ^ hashed_key:
+                shortest_node = json["node"]
+        else:
+            break
+
+    if sha1_hash(shortest_node) ^ hashed_key >= sha1_hash(addr) ^ hashed_key:
+        return addr
+    else:
+        return shortest_node
+
+def sha1_hash(string):
+    return int(sha1(string.encode()).hexdigest(), 16)
 
 # THREAD BS DISCOVCERY
 def find_peers():
@@ -84,8 +137,11 @@ def find_peers():
             tpeer = []
 
             for peer in peers:
-                response = requests.get(f"{peer}/peers")
-                tpeer = tpeer + list(response.json()["peers"])
+                try:
+                    response = requests.get(f"{peer}/peers")
+                    tpeer = tpeer + list(response.json()["peers"])
+                except:
+                    pass
 
             for peer in set(tpeer):
                 if peer not in peers and peer != addr:
@@ -94,13 +150,12 @@ def find_peers():
         sleep(10)
 
 
-# run node before registering, prevent node from being queried before up
-app.run(host="0.0.0.0", threaded=True)
 
 # populate peer list
 discover_thread = Thread(target=find_peers, daemon=True)
 discover_thread.start()
 
 # register node with bootstrap
-requests.post("http://bootstrap:5000/register", json={"peer": addr})
+response = requests.post("http://bootstrap:5000/register", json={"peer": addr})
 
+app.run(host="0.0.0.0", threaded=True)
