@@ -46,10 +46,12 @@ def get_peers():
 def upload_file():
     file = request.files["file"]
     file.save(f"./storage/{file.filename}")
+    requests.post("http://bootstrap:5000/logs", json={"message": f"{file.filename} uploaded"})
     return jsonify({"status": f"uploaded {file.filename}", "filename": file.filename}), 201
 
 @app.route("/download/<filename>", methods=["GET"])
 def download_file(filename):
+    requests.post("http://bootstrap:5000/logs", json={"message": f"{filename} downloaded"})
     return send_from_directory("/storage", filename, as_attachment=True)
 
 # Key-Value Store
@@ -58,13 +60,15 @@ def add_kv_pair():
     data = request.get_json()
     key = data.get("key")
     value = data.get("value")
-
     responsible_node = hash_key_to_node(key)
+
     print(f"""
           ==========================================
           Saving {key}: {value} at {responsible_node if responsible_node != addr else "self"}
           ==========================================
           """)
+
+    requests.post("http://bootstrap:5000/logs", json={"message": f"Saving {key}: {value} at {responsible_node if responsible_node != addr else "self"}"})
 
     if addr != responsible_node:
         response = requests.post(f"{responsible_node}/kv", json={"key": key, "value": value})
@@ -79,11 +83,14 @@ def add_kv_pair():
 @app.route("/kv/<key>")
 def get_kv_value(key):
     responsible_node = hash_key_to_node(key)
+
     print(f"""
           ==========================================
           Retrieving '{key}' from {responsible_node if responsible_node != addr else "self"}
           ==========================================
           """)
+
+    requests.post("http://bootstrap:5000/logs", json={"message": f"Retrieving '{key}' from {responsible_node if responsible_node != addr else "self"}"})
 
     if addr != responsible_node:
         response = requests.get(f"{responsible_node}/kv/{key}")
@@ -100,6 +107,16 @@ def get_kv_value(key):
 def find_closest_node(key):
     return jsonify({"node": hash_key_to_node(key, request.args.get("hop"))})
 
+@app.route("/kys", methods=["POST"])
+def killself():
+    requests.post(f"http://bootstrap:5000/unregister", json={"peer": addr})
+    print("""
+          ======
+          Killed
+          ======
+          """)
+    exit()
+
 def hash_key_to_node(key, hop=0):
     hashed_key = sha1_hash(key)
     peer_distances = {peer: sha1_hash(peer) ^ hashed_key for peer in peers}
@@ -108,8 +125,14 @@ def hash_key_to_node(key, hop=0):
     for _ in range(3):
         if peer_distances and int(hop) < 5:
             node = min(peer_distances, key=peer_distances.get)
-            response = requests.get(f"{node}/find-closest/{key}?hop={int(hop)+1}")
-            json = response.json()
+
+            try:
+                response = requests.get(f"{node}/find-closest/{key}?hop={int(hop)+1}")
+                json = response.json()
+            except:
+                # peer no longer responding
+                peers.remove(node)
+
             peer_distances.pop(node)
 
             if sha1_hash(json["node"]) ^ hashed_key <= sha1_hash(shortest_node) ^ hashed_key:
@@ -131,8 +154,11 @@ def find_peers():
 
     while True:
         if not peers:
-            response = requests.get("http://bootstrap:5000/peers")
-            peers = set([peer for peer in response.json()["peers"] if peer != addr])
+            try:
+                response = requests.get("http://bootstrap:5000/peers")
+                peers = set([peer for peer in response.json()["peers"] if peer != addr])
+            except:
+                pass
         else:
             tpeer = []
 

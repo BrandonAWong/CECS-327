@@ -1,0 +1,118 @@
+body {
+    font-family: 'Geist Mono';
+    background-color: #09090B;
+    color: #FAFAFA;
+}
+
+svg {
+    width: 5%;
+}
+
+.container,
+.card,
+.nodes,
+.node-indv,
+.logs {
+    border: 1px solid #27272A;
+    border-radius: 5px;
+}
+
+.container {
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+
+.container > div:not(:first-child) {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.header {
+    border-bottom: 1px solid #27272A;
+    width: 100%;
+}
+
+h1 {
+    margin-left: 1%;
+}
+
+.info-cards {
+    display: flex;
+    gap: 30px;
+}
+
+.card {
+    padding: 1.5%;
+    width: 15%;
+}
+
+.card > h2 {
+    margin: 0;
+    margin-top: 5%;
+}
+
+.card > p {
+    margin: 0;
+    margin-top: 2%;
+    color: #8992A5;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header > p {
+    padding: 0;
+    margin: 0;
+}
+
+.graphs {
+    margin-top: 30px;
+    gap: 30px;
+    width: 100%;
+}
+
+.graphs,
+#nodes-here,
+.node-indv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nodes {
+    width: 40%;
+    overflow: auto;
+    height: 300px;
+}
+
+.node-indv {
+    width: 20%;
+    margin-left: 10px;
+    align-items: center;
+    gap: 10px;
+}
+
+.graphs > div > h2 {
+    margin-left: 20px;
+}
+
+.logs {
+    width: 55%;
+    height: 300px;
+}
+
+textarea {
+    resize: none;
+    background-color: #09090B;
+    width: 97%;
+    margin-left: 10px;
+    overflow: auto;
+    height: 205px;
+    color: white;
+}
